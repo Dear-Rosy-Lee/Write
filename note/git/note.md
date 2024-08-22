@@ -1,3 +1,50 @@
+## git
+
+### 概念
+
+`仓库(repository):`已经写好，可以用的整个目录及其中的代码（.git中还有对仓库的文件及其内容操作历史）
+
+`克隆(clone):`github上放的就是一个个仓库，要想将仓库的内容拷贝一份到本地
+
+1. 下载zip，解压缩到本地，这样不会保留.git，只会下载源代码
+2. git命令克隆到本地
+   1. https git clone github地址
+   2. ssh
+
+但直接下载，有有些情况会出问题，如果仓库使用了Git子模块（即指向另一个Git仓库的链接），通过直接下载的ZIP文件通常不会包含这些子模块的内容。你只会看到一个空目录或指向子模块的占位符文件。
+
+
+
+`添加(add):`将文件放在一个tmp区（Stage），用于小修小改的保存和返回
+
+`提交(commit):`将多次小改的内容提交，作为仓库的回溯点，也能回滚之前的版本
+
+`推送(push):`将本代的代码提交到远程仓库，执行前，为了保证代码的一致性，可以用pull，最后push
+
+`拉取(pull):`把远程仓库相比多出来的加进去或者把多的删除掉
+
+
+
+`
+
+
+
+```mermaid
+graph TD
+    A[(Workspace)] -->|git add| B[(Stage)]
+    B -->|git commit| C[(Local Repository)]
+    C -->|git push| D[(Remote Repository)]
+    D -->|git fetch| C
+    D -->|git pull| A
+    C -->|git reset| A
+    B -->|git reset| A
+    A -->|修改文件| A
+    B -->|取消暂存| A
+    C -->|回滚提交| A
+```
+
+
+
 ```
 初始化仓库（使仓库中拥有分支）
 git init
@@ -28,6 +75,4 @@ git diff id1 HEAD(最新版本)
 
 
 
-remote
-
-repository
+git 
